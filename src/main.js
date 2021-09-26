@@ -3,8 +3,17 @@ import Vue from "vue";
 import App from "./App.vue";
 // import "./registerServiceWorker";
 import router from "./router";
+import VTooltip from "v-tooltip";
 
-createApp(App).use(router).mount("#app");
+import "bootstrap/scss/bootstrap-grid.scss";
+import "@mdi/font/scss/materialdesignicons.scss";
+import "./assets/default.scss";
+
+createApp(App).use(VTooltip).use(router).mount("#app");
+
+// new Vue({
+//   render: (h) => h(App),
+// }).$mount("#app");
 
 // export default new Vue({
 //   router,
