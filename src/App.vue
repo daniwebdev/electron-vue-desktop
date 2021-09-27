@@ -1,17 +1,11 @@
 <template>
   <div id="app">
     <TopBar />
+
     <SideMenu />
 
-    <div id="bottombar">
-      <div class="bottom-left"></div>
-      <div class="bottom-right">
-        <span class="item date"> 00:00:00 </span>
-        <span class="item" style="text-align: center"
-          ><i class="mdi mdi-bell"></i
-        ></span>
-      </div>
-    </div>
+    <BottomBar />
+
     <div id="content">
       <router-view></router-view>
     </div>
@@ -19,19 +13,20 @@
 </template>
 
 <script>
-import moment from "moment";
 import SideMenu from "./components/SideMenu.vue";
 import TopBar from "./components/TopBar.vue";
+import BottomBar from "./components/BottomBar.vue";
 
 export default {
   components: {
     SideMenu,
+    BottomBar,
     TopBar,
   },
   mounted: () => {
-    setInterval(() => {
-      document.querySelector(".date").innerHTML = moment().format("HH:mm:ss");
-    }, 1000);
+    // setInterval(() => {
+    //   document.querySelector(".date").innerHTML = moment().format("HH:mm:ss");
+    // }, 1000);
   },
 };
 </script>

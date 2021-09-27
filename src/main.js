@@ -6,10 +6,18 @@ import router from "./router";
 import VTooltip from "v-tooltip";
 
 import "bootstrap/scss/bootstrap-grid.scss";
+import "bootstrap/scss/bootstrap-utilities.scss";
 import "@mdi/font/scss/materialdesignicons.scss";
 import "./assets/default.scss";
+import moment from "moment";
 
-createApp(App).use(VTooltip).use(router).mount("#app");
+const app = createApp(App);
+app.config.globalProperties.moment = moment;
+
+app.use(VTooltip);
+app.use(router);
+
+app.mount("#app");
 
 // new Vue({
 //   render: (h) => h(App),

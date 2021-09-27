@@ -13,10 +13,10 @@
     },
     "main": "background.js",
     "dependencies": {
-        "@mdi/font": "5.9.55",
+        "@mdi/font": "^5.9.55",
+        "bootstrap": "^5.0.0-beta3",
         "moment": "^2.29.1",
         "register-service-worker": "^1.7.1",
-        "roboto-fontface": "*",
         "v-tooltip": "https://github.com/paulshen/v-tooltip.git#vue3",
         "vue": "^3.0.0",
         "vue-router": "^4.0.0-0"

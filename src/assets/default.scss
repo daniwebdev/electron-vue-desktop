@@ -2,6 +2,9 @@
     --bottom-hight: 25px;
     --top-hight: 30px;
     --side-hight: 50px;
+    --background-color-primary: #292d3e;
+    --background-color-secondary: #2d2e33;
+    --button-primary-hover-color: #1f2230;
 }
 
 body {
@@ -15,46 +18,11 @@ body {
     height: 100vh;
 }
 
-#bottombar {
-    position: absolute;
-    bottom: 0;
-    background: rgb(41, 45, 62);
-    border-top: 1px solid rgb(48, 54, 76);
-    height: var(--bottom-hight);
-    width: 100%;
-    display: flex;
-    color: white;
-    justify-self: center;
-    font-size: 12px;
-}
-
-#bottombar .bottom-left {
-    align-self: center;
-    flex: 1;
-}
-
-#bottombar .bottom-right {
-    text-align: right;
-    align-self: center;
-    flex: 1;
-}
-
-#bottombar .item {
-    display: inline-block;
-    padding: 5px;
-    min-width: 20px;
-}
-
-#bottombar .item:hover {
-    background: rgb(31, 34, 48);
-    cursor: pointer;
-}
-
 #content {
-    /* display: flex; */
+    background: var(--background-color-primary);
     margin-left: var(--side-hight);
     /* padding-top: 30px; */
-    max-height: calc(100vh - var(--bottom-hight) - var(--top-hight));
+    height: calc(100vh - var(--bottom-hight) - var(--top-hight));
     overflow-y: auto;
 }
 
@@ -66,4 +34,13 @@ body {
     -webkit-user-select: none;
     user-select: none;
     -webkit-app-region: drag;
+}
+
+.btn {
+    padding: 5px 10px;
+    &:hover {
+        background-color: var(--button-primary-hover-color);
+        display: inline-block;
+        cursor: pointer;
+    }
 }
