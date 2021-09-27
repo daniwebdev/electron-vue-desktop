@@ -1,4 +1,4 @@
-# vue-desktop
+# VUE Desktop with ElectronJS
 
 ## Project setup
 ```
@@ -22,3 +22,9 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## TODO
+
+- [x] Button
+- [ ] Data Grid
+- [ ] ...
