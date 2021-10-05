@@ -2,11 +2,12 @@
   <div>
     <div id="bottombar">
       <div class="bottom-left">
-        <span
-          class="item text-center"
-          v-bind:class="{ online: isOnline, offline: !isOnline }"
-        >
-          <i class="mdi mdi-circle"></i>
+        <span class="item text-center">
+          <i
+            v-bind:class="{ online: isOnline, offline: !isOnline }"
+            class="mdi mdi-circle"
+          ></i>
+          {{ ip }}
         </span>
         <span class="item text-center">
           <i class="mdi mdi-account"></i> Muhamad Yusup Hamdani
@@ -22,32 +23,30 @@
   </div>
 </template>
 <script>
+import axios from "@/plugins/network";
+
 export default {
   name: "BottomBar",
   data() {
     return {
       date: this.moment().format("DD MMM YYYY HH:mm:ss"),
       isOnline: null,
+      ip: null,
     };
   },
-  mounted() {
+  methods: {
+    async getIP() {
+      let response = await axios.get("http://ip-api.com/json");
+
+      this.ip = response.data.query;
+    },
+  },
+  async mounted() {
     setInterval(() => {
       this.date = this.moment().format("DD MMM YYYY HH:mm:ss");
     }, 1000);
 
-    ipcRenderer.send("net-check");
-    setInterval(() => {
-      ipcRenderer.send("net-check");
-    }, 5000);
-
-    ipcRenderer.receive("net-status", function (status) {
-      console.log(status);
-      if (status == "online") {
-        this.isOnline = true;
-      } else {
-        this.isOnline = false;
-      }
-    });
+    await this.getIP();
   },
 };
 </script>

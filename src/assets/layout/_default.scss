@@ -1,20 +1,12 @@
-:root {
-    --bottom-hight: 25px;
-    --top-hight: 30px;
-    --side-hight: 50px;
-    --background-color-primary: #292d3e;
-    --background-color-secondary: #282c3d;
-    --button-primary-hover-color: #1f2230;
-    --text-global-color: #dfdfdf;
-    --row-background: #202435;
-    --row-shadow: #161a27c2;
-}
-
 body {
     color: var(--text-global-color);
     font-family: 'Quicksand';
     margin: 0;
     padding: 0;
+}
+
+a {
+    color: var(--link-color);
 }
 
 #app {
@@ -26,6 +18,7 @@ body {
     background: var(--background-color-primary);
     margin-left: var(--side-hight);
     /* padding-top: 30px; */
+    width: calc(100vw - var(--side-width));
     height: calc(100vh - var(--bottom-hight) - var(--top-hight));
     overflow-y: auto;
 }
