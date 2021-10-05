@@ -1,6 +1,7 @@
 "use strict";
 
-import { app, protocol, BrowserWindow } from "electron";
+import path from "path";
+import { app, protocol, BrowserWindow, ipcMain, net } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -18,6 +19,7 @@ async function createWindow() {
     height: 700,
     frame: false,
     webPreferences: {
+      preload: path.join(__dirname, "preload.js"),
       // Use pluginOptions.nodeIntegration, leave this alone
       // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
       nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION,
@@ -80,3 +82,14 @@ if (isDevelopment) {
     });
   }
 }
+
+ipcMain.on("close-window", (event, args) => {
+  app.quit();
+});
+
+ipcMain.on("minimize-window", (event, args) => {});
+
+ipcMain.on("net-check", (event, args) => {
+  //
+  event.reply("net-status", net.online ? "online" : "offline");
+});

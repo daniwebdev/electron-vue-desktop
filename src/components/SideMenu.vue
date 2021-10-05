@@ -1,16 +1,15 @@
 <template>
   <div id="sidebar">
     <div id="side-top">
-      <div
+      <router-link
+        :to="menu.link"
         v-for="menu in menus"
         :key="menu.name"
         class="menu-item"
         v-tooltip.right="menu.name"
       >
-        <router-link :to="menu.link">
-          <span v-html="menu.icon"></span>
-        </router-link>
-      </div>
+        <span v-html="menu.icon"></span>
+      </router-link>
     </div>
     <div id="side-bottom">
       <div v-for="bMenu in bottomMenus" class="menu-item" :key="bMenu.icon">
@@ -70,7 +69,7 @@ export default {
 
 <style lang="scss">
 #sidebar {
-  background: rgb(40, 44, 61);
+  background: var(--background-color-secondary);
   width: var(--side-hight);
   position: fixed;
   display: flex;
@@ -88,6 +87,7 @@ export default {
 }
 
 #sidebar .menu-item {
+  display: block;
   width: 100%;
   text-align: center;
   padding: 10px 0px;

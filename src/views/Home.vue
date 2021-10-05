@@ -1,11 +1,20 @@
 <template>
   <div class="container text-center">
-    <h1 class="m-0">CONET.ID</h1>
+    <h1>CONET Pro+</h1>
+    <p>
+      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis,
+      doloribus?
+    </p>
+    <div class="row" style="text-align: left">
+      <div class="col-6">
+        <h2>Changelog</h2>
+      </div>
+      <div class="col-6">B</div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
 export default {
   name: "Home",
   components: {},

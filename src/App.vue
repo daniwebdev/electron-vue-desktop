@@ -24,9 +24,7 @@ export default {
     TopBar,
   },
   mounted: () => {
-    // setInterval(() => {
-    //   document.querySelector(".date").innerHTML = moment().format("HH:mm:ss");
-    // }, 1000);
+    console.log("App mounted.");
   },
 };
 </script>
