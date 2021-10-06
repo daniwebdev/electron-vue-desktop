@@ -1,4 +1,6 @@
 <template>
+  <top-panel title="Employee" :actions="btnactions" />
+
   <v-grid
     theme="darkMaterial"
     :source="rows"
@@ -9,23 +11,30 @@
 </template>
 <script>
 import VGrid from "@revolist/vue3-datagrid";
+import TopPanel from "@/components/TopPanel.vue";
 
 export default {
   name: "Employee",
   data() {
     return {
+      btnactions: [
+        {
+          icon: "mdi mdi-plus",
+          title: "Add",
+        },
+      ],
       columns: [
         {
           name: "#",
           prop: "_no",
-          columnType: "date",
-          size: 40,
+          columnType: "number",
+          size: 60,
           readonly: true,
         },
         {
-          name: "Birth",
-          prop: "birthdate",
-          columnType: "date",
+          name: "Username",
+          prop: "username",
+          columnType: "string",
           size: 120,
         },
         {
@@ -34,471 +43,66 @@ export default {
           size: 200,
         },
         {
-          prop: "details",
-          name: "Jabatan",
+          prop: "email",
+          name: "Email",
         },
       ],
-      rows: [
-        {
-          _no: "1",
-          birthdate: "2022-08-24",
-          name: "Muhamad Yusup Hamdani",
-          details: "Item 1",
-        },
-        {
-          _no: "2",
-          birthdate: "2022-08-24",
-          name: "Dea Anggi Rahmawati",
-          details: "Item 1",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-        {
-          _no: "3",
-          birthdate: "2022-08-24",
-          name: "Azra Hafshah Hamdani",
-          details: "Item 2",
-        },
-      ],
+      rows: [],
     };
+  },
+  methods: {
+    getData() {
+      this.axios
+        .get("https://jsonplaceholder.typicode.com/users")
+        .then((res) => {
+          let data = res.data.map((x) => {
+            return {
+              _no: x.id,
+              username: "2022-08-24",
+              name: x.name,
+              email: x.email,
+            };
+          });
+
+          this.rows = data;
+        });
+    },
+  },
+  mounted() {
+    this.getData();
   },
   components: {
     VGrid,
+    TopPanel,
   },
 };
 </script>
 
 <style lang="scss">
+revo-grid {
+  height: calc(100vh - 50px - var(--top-hight) - var(--bottom-hight));
+}
+
+top-panel {
+  background: var(--background-color-primary);
+  box-shadow: 0 -1px 0 0 #44f inset;
+  height: 50px;
+  .title {
+    margin: 0px;
+    font-size: 20px;
+    padding-left: 10px;
+  }
+  .actions {
+    .btn-action {
+      background: #44f;
+      color: white;
+      border: 1px solid #44f;
+      height: 50px;
+      width: 50px;
+      font-size: 20px;
+    }
+  }
+}
 // revo-grid[theme="compact"] {
 //   .header-wrapper {
 //     background-color: var(--background-color-secondary);

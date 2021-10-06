@@ -13,24 +13,14 @@ import "@/assets/layout/style.scss";
 import "@/assets/tooltip.scss";
 
 import moment from "moment";
+import axios from "@/plugins/network.js";
 
 const app = createApp(App);
 app.config.globalProperties.moment = moment;
+app.config.globalProperties.axios = axios;
 
 app.use(VTooltip);
 app.use(VGrid);
 app.use(router);
 
 app.mount("#app");
-
-// new Vue({
-//   render: (h) => h(App),
-// }).$mount("#app");
-
-// export default new Vue({
-//   router,
-//   render: (h) => h(App),
-//   mounted: () => {
-//     // Prevent white screen when the app is launched (in production build)
-//   },
-// }).$mount("#app");

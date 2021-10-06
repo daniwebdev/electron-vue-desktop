@@ -7,15 +7,15 @@
     <BottomBar />
 
     <div id="content">
-      <router-view></router-view>
+      <router-view> </router-view>
     </div>
   </div>
 </template>
 
 <script>
-import SideMenu from "./components/SideMenu.vue";
-import TopBar from "./components/TopBar.vue";
-import BottomBar from "./components/BottomBar.vue";
+import SideMenu from "@/components/layouts/SideMenu.vue";
+import TopBar from "@/components/layouts/TopBar.vue";
+import BottomBar from "@/components/layouts/BottomBar.vue";
 
 export default {
   components: {

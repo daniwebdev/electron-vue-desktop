@@ -11,9 +11,11 @@ protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
 
+var mainWindow;
+
 async function createWindow() {
   // Create the browser window.
-  const win = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 900,
     // fullscreen: true,
     height: 700,
@@ -29,15 +31,15 @@ async function createWindow() {
 
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     // Load the url of the dev server if in development mode
-    await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
-    if (!process.env.IS_TEST) win.webContents.openDevTools();
+    await mainWindow.loadURL(process.env.WEBPACK_DEV_SERVER_URL);
+    if (!process.env.IS_TEST) mainWindow.webContents.openDevTools();
   } else {
     createProtocol("app");
     // Load the index.html when not in development
-    win.loadURL("app://./index.html");
+    mainWindow.loadURL("app://./index.html");
   }
 
-  win.maximize();
+  mainWindow.maximize();
 }
 
 // Quit when all windows are closed.
@@ -89,7 +91,17 @@ ipcMain.on("close-window", (event, args) => {
   app.quit();
 });
 
-ipcMain.on("minimize-window", (event, args) => {});
+ipcMain.on("minimize-window", (event, args) => {
+  mainWindow.minimize();
+});
+
+ipcMain.on("maximize-window", (event, args) => {
+  if (mainWindow.isMaximized()) {
+    mainWindow.unmaximize();
+  } else {
+    mainWindow.maximize();
+  }
+});
 
 ipcMain.on("net-check", (event, args) => {
   //

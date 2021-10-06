@@ -1,6 +1,6 @@
 #topbar {
     /* position: absolute; */
-    border-bottom: 1px solid rgb(48, 54, 76);
+    border-bottom: 1px solid var(--border-line-top-bottom);
     background: var(--background-color-primary);
     height: var(--top-hight);
     width: 100%;

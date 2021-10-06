@@ -3,7 +3,12 @@ import { contextBridge, ipcRenderer } from "electron";
 // Expose ipcRenderer to the client
 contextBridge.exposeInMainWorld("ipcRenderer", {
   send: (channel, data) => {
-    let validChannels = ["close-window", "net-check"]; // <-- Array of all ipcRenderer Channels used in the client
+    let validChannels = [
+      "close-window",
+      "minimize-window",
+      "maximize-window",
+      "net-check",
+    ]; // <-- Array of all ipcRenderer Channels used in the client
     if (validChannels.includes(channel)) {
       ipcRenderer.send(channel, data);
     }

@@ -1,4 +1,17 @@
 @import "variables";
 @import "default";
 @import "topbar";
-@import "custom"
+@import "custom";
+@import "scrollbar";
+
+/* Blocked Text Selection */
+
+* {
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.enable-text-selection {
+    -webkit-user-select: text;
+    user-select: text;
+}
