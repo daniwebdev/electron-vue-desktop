@@ -1,33 +1,36 @@
 <template>
   <div id="topbar" class="">
     <div class="topbar-left">
-      <div class="logo">CONET.ID</div>
+      <div class="logo">CONET</div>
       <div class="top-menu">
         <ul>
           <li>
-            <a href="#">File</a>
+            <a href="javascript:">File</a>
             <div class="top-submenu">
-              <span>New File</span>
+              <ul>
+                <li><span class="top-submenu-link">Invoice</span></li>
+                <li><span class="top-submenu-link">Payroll</span></li>
+              </ul>
             </div>
           </li>
-          <li><a href="#">Edit</a></li>
-          <li><a href="#">View</a></li>
-          <li><a href="#">Help</a></li>
+          <li><a href="javascript:">Company</a></li>
+          <li><a href="javascript:">Payroll</a></li>
+          <li><a href="javascript:">Help</a></li>
         </ul>
       </div>
     </div>
     <div class="topbar-center draggable">Home</div>
     <div class="topbar-right">
-      <span class="btn">
+      <span class="btn btn-spaction">
         <i class="mdi mdi-chevron-down-circle-outline"></i>
       </span>
-      <span class="btn" @click="minimize()">
+      <span class="btn btn-spaction" @click="minimize()">
         <i class="mdi mdi-minus"></i>
       </span>
-      <span class="btn" @click="maximize()">
+      <span class="btn btn-spaction" @click="maximize()">
         <i class="mdi mdi-fullscreen"></i>
       </span>
-      <span class="btn btn-close" v-on:click="close()">
+      <span class="btn btn-spaction btn-close" v-on:click="close()">
         <i class="mdi mdi-close"></i>
       </span>
     </div>
@@ -89,8 +92,14 @@ export default {
 </script>
 
 <style lang="scss">
-.btn-close:hover {
-  background: var(--danger) !important;
-  color: #fff;
+.btn-close {
+  width: 25px;
+  text-align: center;
+  display: inline-block;
+  padding: 10px;
+  &:hover {
+    background: var(--danger) !important;
+    color: #fff;
+  }
 }
 </style>

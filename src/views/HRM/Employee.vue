@@ -8,19 +8,58 @@
     readonly="true"
     resize="false"
   ></v-grid>
+
+  <Modal size="lg" @close="formIsOpen == false" v-if="formIsOpen == true">
+    <template v-slot:header>
+      <h3>Exit From App</h3>
+    </template>
+    <template v-slot:body>
+      <div class="row" style="width: 100%">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Nama Lengkap</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Nama Lengkap</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="">Nama Lengkap</label>
+            <input type="text" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </template>
+    <template v-slot:footer>
+      <div class="act-group">
+        <button class="btn cancel" @click="cancel()">Cancel</button>
+        <button class="btn confirm" @click="confirm()">Confirm</button>
+      </div>
+    </template>
+  </Modal>
 </template>
 <script>
 import VGrid from "@revolist/vue3-datagrid";
 import TopPanel from "@/components/TopPanel.vue";
+import Modal from "@/components/Modal.vue";
 
 export default {
   name: "Employee",
   data() {
     return {
+      formIsOpen: true,
       btnactions: [
         {
           icon: "mdi mdi-plus",
           title: "Add",
+          action: () => {
+            console.log("test");
+          },
         },
       ],
       columns: [
@@ -74,6 +113,7 @@ export default {
   components: {
     VGrid,
     TopPanel,
+    Modal,
   },
 };
 </script>

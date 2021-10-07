@@ -1,13 +1,13 @@
 <template>
   <div class="modal-mask">
     <div class="modal-wrapper">
-      <div class="modal-container">
+      <div class="modal-container" v-bind:class="size">
         <div class="modal-header">
           <slot name="header"> default header </slot>
         </div>
 
         <div class="modal-body">
-          <slot name="body"> default body </slot>
+          <slot name="body"></slot>
         </div>
 
         <div class="modal-footer">
@@ -25,6 +25,12 @@
 <script>
 export default {
   name: "Modal",
+  props: {
+    size: {
+      type: String,
+      default: "sm",
+    },
+  },
 };
 </script>
 <style lang="scss">
@@ -45,12 +51,20 @@ export default {
 }
 
 .modal-container {
-  width: 300px;
   margin: 0px auto;
   background-color: #fff;
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   font-family: Helvetica, Arial, sans-serif;
+  &.sm {
+    width: 300px;
+  }
+  &.md {
+    width: 500px;
+  }
+  &.lg {
+    width: 700px;
+  }
 }
 
 .modal-header {
@@ -64,6 +78,8 @@ export default {
 
 .modal-body {
   padding: 10px;
+  max-height: calc(100vh * 0.7);
+  overflow: auto;
 }
 
 .modal-default-button {

@@ -8,9 +8,12 @@ import VGrid from "@revolist/vue3-datagrid";
 
 import "bootstrap/scss/bootstrap-grid.scss";
 import "bootstrap/scss/bootstrap-utilities.scss";
+
 import "@mdi/font/scss/materialdesignicons.scss";
 import "@/assets/layout/style.scss";
 import "@/assets/tooltip.scss";
+
+// import "@/plugins/currentScript.js";
 
 import moment from "moment";
 import axios from "@/plugins/network.js";

@@ -1,18 +1,19 @@
 #topbar {
     /* position: absolute; */
     border-bottom: 1px solid var(--border-line-top-bottom);
-    background: var(--background-color-primary);
+    background: var(--topbar-color);
     height: var(--top-hight);
     width: 100%;
     display: flex;
+    // overflow: hidden;
     justify-self: center;
-    color: #aaa;
+    color: rgba(255, 255, 255, 0.897);
     .topbar-left {
         align-self: center;
         flex: 2;
-        // background: #000;
         display: flex;
         .logo {
+            font-family: 'Montserrat';
             font-size: 1em;
             font-weight: bold;
             color: #fff;
@@ -26,12 +27,13 @@
                 margin: 0;
                 padding: 0;
                 li {
-                    display: inline-block;
+                    display: inline;
                     position: relative;
-                    font-size: 15px;
+                    font-size: small;
                     a {
-                        padding: 5px 10px;
-                        color: #aaa;
+                        padding: 8px 10px;
+                        display: inherit;
+                        height: var(--top-hight);
                         text-decoration: none;
                         &:hover {
                             background: var(--button-primary-hover-color);
@@ -55,12 +57,25 @@
                         z-index: 99999;
                         display: none;
                         position: absolute;
-                        top: 25px;
+                        top: 23px;
                         width: 200px;
                         background: #141318;
-                        padding: 10px;
+                        padding: 10px 0px;
                         font-size: inherit;
                         color: #fff;
+                        ul {
+                            li {
+                                .top-submenu-link {
+                                    display: block;
+                                    padding: 8px 20px;
+                                    &:hover {
+                                        background: var(--button-primary-hover-color);
+                                        cursor: pointer;
+                                        color: #fff;
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }

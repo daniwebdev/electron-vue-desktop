@@ -3,12 +3,14 @@
 @import "topbar";
 @import "custom";
 @import "scrollbar";
+@import "form";
 
 /* Blocked Text Selection */
 
 * {
     -webkit-user-select: none;
     user-select: none;
+    box-sizing: border-box;
 }
 
 .enable-text-selection {

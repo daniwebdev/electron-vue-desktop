@@ -1,0 +1,21 @@
+.form-group {
+    color: #302f36;
+    width: 100%;
+    margin-bottom: 0;
+    .form-control {
+        padding: 8px;
+        outline: none;
+        display: block;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+        margin-bottom: 1rem;
+    }
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        font-size: 0.875rem;
+        font-family: "Montserrat";
+    }
+}

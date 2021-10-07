@@ -15,7 +15,7 @@
       </div>
       <div class="bottom-right">
         <span class="item date"> {{ date }} </span>
-        <span class="item" style="text-align: center"
+        <span class="item btn" style="text-align: center"
           ><i class="mdi mdi-bell"></i
         ></span>
       </div>
@@ -46,7 +46,10 @@ export default {
       this.date = this.moment().format("DD MMM YYYY HH:mm:ss");
     }, 1000);
 
-    await this.getIP();
+    this.getIP();
+    setInterval(() => {
+      this.getIP();
+    }, 10000);
   },
 };
 </script>
@@ -89,7 +92,7 @@ export default {
   min-width: 20px;
 }
 
-#bottombar .item:hover {
+#bottombar .item.btn:hover {
   background: var(--button-primary-hover-color);
   cursor: pointer;
 }

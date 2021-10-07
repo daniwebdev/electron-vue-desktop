@@ -5,7 +5,8 @@
         <button 
         v-for="act in actions" 
         v-bind:key="act.title" 
-        class="btn-action" 
+        class="btn-action"
+        @click="act.action()"
         v-tooltip.left="act.title">
             <i :class="act.icon"></i>
         </button>
