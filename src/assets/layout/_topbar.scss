@@ -7,6 +7,7 @@
     display: flex;
     // overflow: hidden;
     justify-self: center;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.897);
     .topbar-left {
         align-self: center;
@@ -29,7 +30,6 @@
                 li {
                     display: inline;
                     position: relative;
-                    font-size: small;
                     a {
                         padding: 8px 10px;
                         display: inherit;
@@ -91,5 +91,6 @@
         flex: 1;
         text-align: right;
         overflow: hidden;
+        font-size: small;
     }
 }

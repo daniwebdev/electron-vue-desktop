@@ -21,16 +21,16 @@
     </div>
     <div class="topbar-center draggable">Home</div>
     <div class="topbar-right">
-      <span class="btn btn-spaction">
+      <span class="btn-spaction-top">
         <i class="mdi mdi-chevron-down-circle-outline"></i>
       </span>
-      <span class="btn btn-spaction" @click="minimize()">
+      <span class="btn-spaction-top" @click="minimize()">
         <i class="mdi mdi-minus"></i>
       </span>
-      <span class="btn btn-spaction" @click="maximize()">
+      <span class="btn-spaction-top" @click="maximize()">
         <i class="mdi mdi-fullscreen"></i>
       </span>
-      <span class="btn btn-spaction btn-close" v-on:click="close()">
+      <span class="btn-spaction-top" v-on:click="close()">
         <i class="mdi mdi-close"></i>
       </span>
     </div>
@@ -92,14 +92,24 @@ export default {
 </script>
 
 <style lang="scss">
-.btn-close {
-  width: 25px;
+.btn-close-app {
   text-align: center;
   display: inline-block;
   padding: 10px;
   &:hover {
     background: var(--danger) !important;
     color: #fff;
+  }
+}
+.btn-spaction-top {
+  text-align: center;
+  padding-top: 8px !important;
+  height: var(--top-hight);
+  display: inline-block;
+  padding: 5px 10px;
+  &:hover {
+    background-color: var(--button-primary-hover-color);
+    cursor: pointer;
   }
 }
 </style>

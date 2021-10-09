@@ -12,9 +12,19 @@
       </router-link>
     </div>
     <div id="side-bottom">
-      <div v-for="bMenu in bottomMenus" class="menu-item" :key="bMenu.icon">
+      <a
+        href="javascript:void"
+        v-for="bMenu in bottomMenus"
+        class="menu-item"
+        :key="bMenu.icon"
+      >
         <span v-html="bMenu.icon"></span>
-      </div>
+
+        <div class="sidemenu-sub">
+          <a href="">Link 1</a>
+          <a href="">Link 3</a>
+        </div>
+      </a>
     </div>
   </div>
 </template>
@@ -26,7 +36,7 @@ export default {
       menus: [
         {
           name: "Home",
-          link: "/home",
+          link: "/",
           icon: '<i class="mdi mdi-home icon"></i>',
           // icon: '<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>',
         },
@@ -92,10 +102,37 @@ export default {
   text-align: center;
   padding: 10px 0px;
   color: #999;
+  position: relative;
+  .sidemenu-sub {
+    display: none;
+    left: var(--side-hight);
+    position: absolute;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: var(--background-color-secondary);
+    font-size: 11px;
+    a {
+      display: block;
+      padding: 10px;
+      text-align: left;
+      cursor: pointer;
+      &:hover {
+        background: #212535 !important;
+      }
+    }
+  }
 }
 
-#sidebar .menu-item:hover {
-  background: rgb(31, 34, 48);
-  cursor: pointer;
+#sidebar {
+  .menu-item:active,
+  .menu-item:focus {
+    background: #1f2230;
+    cursor: pointer;
+    .sidemenu-sub {
+      display: block;
+      bottom: 0;
+      width: 200px;
+    }
+  }
 }
 </style>

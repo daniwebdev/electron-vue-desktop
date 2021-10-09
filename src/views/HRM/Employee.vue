@@ -47,19 +47,23 @@
 import VGrid from "@revolist/vue3-datagrid";
 import TopPanel from "@/components/TopPanel.vue";
 import Modal from "@/components/Modal.vue";
+import { useStore } from "vuex";
 
 export default {
   name: "Employee",
+  setup() {
+    const store = useStore();
+
+    return { store };
+  },
   data() {
     return {
-      formIsOpen: true,
+      formIsOpen: false,
       btnactions: [
         {
           icon: "mdi mdi-plus",
           title: "Add",
-          action: () => {
-            console.log("test");
-          },
+          action: () => {},
         },
       ],
       columns: [
@@ -91,6 +95,7 @@ export default {
   },
   methods: {
     getData() {
+      this.store.commit("startLoading");
       this.axios
         .get("https://jsonplaceholder.typicode.com/users")
         .then((res) => {
@@ -104,6 +109,7 @@ export default {
           });
 
           this.rows = data;
+          this.store.commit("startLoading");
         });
     },
   },
