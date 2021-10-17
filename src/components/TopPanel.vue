@@ -1,15 +1,34 @@
 <template lang="">
-  <div class="top-panel d-flex align-items-center justify-content-between">
-    <h3 class="title">{{ title }}</h3>
+  <div
+    class="
+      top-panel
+      d-flex
+      align-items-center
+      justify-content-between
+      align-items-center
+    "
+  >
+    <!-- <h3 class="title">{{ title }}</h3> -->
+    <div class="form-group m-0 pl-2">
+      <input
+        type="text"
+        class="form-control"
+        name=""
+        id=""
+        aria-describedby="helpId"
+        placeholder="Search..."
+      />
+    </div>
     <div class="actions" style="padding-right: 0px">
-        <button 
-        v-for="act in actions" 
-        v-bind:key="act.title" 
+      <button
+        v-for="act in actions"
+        v-bind:key="act.title"
         class="btn-action"
         @click="act.action()"
-        v-tooltip.left="act.title">
-            <i :class="act.icon"></i>
-        </button>
+        v-tooltip.left="act.title"
+      >
+        <i :class="act.icon"></i>
+      </button>
     </div>
   </div>
 </template>
@@ -27,8 +46,8 @@ export default {
     },
   },
   mounted() {
-    console.log("TopPanel mounted");
-    console.log(this.actions);
+    // console.log("TopPanel mounted");
+    // console.log(this.actions);
   },
 };
 </script>

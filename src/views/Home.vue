@@ -32,5 +32,8 @@
 export default {
   name: "Home",
   components: {},
+  mounted() {
+    ipcRenderer.send("setTitle", "Home");
+  },
 };
 </script>

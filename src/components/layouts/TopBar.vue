@@ -13,13 +13,44 @@
               </ul>
             </div>
           </li>
-          <li><a href="javascript:">Company</a></li>
+          <li>
+            <a href="javascript:">Company</a>
+            <div class="top-submenu">
+              <ul>
+                <li>
+                  <router-link
+                    to="/"
+                    class="top-submenu-link d-flex justify-content-between"
+                  >
+                    <span>Departement</span> <span>Ctr+D</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/"
+                    class="top-submenu-link d-flex justify-content-between"
+                  >
+                    <span>Designation</span> <span>Ctr+I</span>
+                  </router-link>
+                </li>
+                <li>
+                  <router-link
+                    to="/"
+                    class="top-submenu-link d-flex justify-content-between"
+                  >
+                    <span>Information</span> <span>Ctr+I</span>
+                  </router-link>
+                </li>
+              </ul>
+            </div>
+          </li>
           <li><a href="javascript:">Payroll</a></li>
+          <li><a href="javascript:">Setting</a></li>
           <li><a href="javascript:">Help</a></li>
         </ul>
       </div>
     </div>
-    <div class="topbar-center draggable">Home</div>
+    <div class="topbar-center draggable">{{ title }}</div>
     <div class="topbar-right">
       <span class="btn-spaction-top">
         <i class="mdi mdi-chevron-down-circle-outline"></i>
@@ -30,8 +61,8 @@
       <span class="btn-spaction-top" @click="maximize()">
         <i class="mdi mdi-fullscreen"></i>
       </span>
-      <span class="btn-spaction-top" v-on:click="close()">
-        <i class="mdi mdi-close"></i>
+      <span class="btn-spaction-top btn-close-app" v-on:click="close()">
+        <i class="mdi mdi-window-close"></i>
       </span>
     </div>
   </div>
@@ -43,8 +74,8 @@
       </template>
       <template v-slot:footer>
         <div class="act-group">
-          <button class="btn cancel" @click="cancel()">Cancel</button>
-          <button class="btn confirm" @click="confirm()">Confirm</button>
+          <button class="cancel" @click="cancel()">Cancel</button>
+          <button class="confirm" @click="confirm()">Confirm</button>
         </div>
       </template>
     </Modal>
@@ -59,15 +90,11 @@ export default {
   components: {
     Modal,
   },
-  props: {
-    title: {
-      type: String,
-      default: "Home",
-    },
-  },
+  props: {},
   data() {
     return {
       boxConfirmClose: false,
+      title: "CONET.ID - HOME",
     };
   },
   methods: {
@@ -88,28 +115,10 @@ export default {
       ipcRenderer.send("maximize-window");
     },
   },
+  mounted() {
+    ipcRenderer.receive("titleChanged", (event, data) => {
+      this.title = event;
+    });
+  },
 };
 </script>
-
-<style lang="scss">
-.btn-close-app {
-  text-align: center;
-  display: inline-block;
-  padding: 10px;
-  &:hover {
-    background: var(--danger) !important;
-    color: #fff;
-  }
-}
-.btn-spaction-top {
-  text-align: center;
-  padding-top: 8px !important;
-  height: var(--top-hight);
-  display: inline-block;
-  padding: 5px 10px;
-  &:hover {
-    background-color: var(--button-primary-hover-color);
-    cursor: pointer;
-  }
-}
-</style>

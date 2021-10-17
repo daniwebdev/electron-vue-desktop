@@ -38,13 +38,16 @@ export default {
           name: "Home",
           link: "/",
           icon: '<i class="mdi mdi-home icon"></i>',
-          // icon: '<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>',
+        },
+        {
+          name: "Account",
+          link: "/userinfo",
+          icon: '<i class="mdi mdi-account icon"></i>',
         },
         {
           name: "Pegawai",
           link: "/employee",
           icon: '<i class="mdi mdi-account-group-outline icon"></i>',
-          // icon: '<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
         },
         {
           name: "Invoice",
@@ -63,7 +66,7 @@ export default {
               title: "Akun",
             },
           ],
-          icon: '<svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="css-i6dzq1"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>',
+          icon: '<i class="mdi mdi-cog icon"></i>',
         },
       ],
     };
@@ -109,14 +112,17 @@ export default {
     position: absolute;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: var(--background-color-secondary);
+    background: var(--background-color-secondary) !important;
     font-size: 11px;
+    z-index: 99999 !important;
     a {
+      z-index: 99999 !important;
       display: block;
       padding: 10px;
       text-align: left;
       cursor: pointer;
       &:hover {
+        z-index: 99999 !important;
         background: #212535 !important;
       }
     }
@@ -126,6 +132,7 @@ export default {
 #sidebar {
   .menu-item:active,
   .menu-item:focus {
+    z-index: 99999 !important;
     background: #1f2230;
     cursor: pointer;
     .sidemenu-sub {

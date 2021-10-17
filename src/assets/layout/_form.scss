@@ -1,21 +1,19 @@
 .form-group {
-    color: #302f36;
-    width: 100%;
-    margin-bottom: 0;
+    font-size: 12px;
     .form-control {
+        border-radius: 0 !important;
+        border-color: #2F3541;
+        box-shadow: none;
+        border-width: 1px;
+        border-style: solid;
         padding: 8px;
-        outline: none;
-        display: block;
-        width: 100%;
-        border: 1px solid #ccc;
-        border-radius: 0.25rem;
-        margin-bottom: 1rem;
-    }
-    label {
-        display: block;
-        margin-bottom: 0.5rem;
-        font-weight: bold;
-        font-size: 0.875rem;
-        font-family: "Montserrat";
+        font-size: 14px;
+        font-weight: 400;
+        color: #CCCCCC;
+        background-color: var(--form-input-background);
+        background-image: none;
+        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
     }
 }

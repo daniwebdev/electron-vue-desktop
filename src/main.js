@@ -8,13 +8,11 @@ import VGrid from "@revolist/vue3-datagrid";
 
 import "bootstrap/scss/bootstrap-grid.scss";
 import "bootstrap/scss/bootstrap-utilities.scss";
-
 import "@mdi/font/scss/materialdesignicons.scss";
 
-
-import BootstrapVue3 from "bootstrap-vue-3";
-import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap-vue-3/dist/bootstrap-vue-3.css";
+/* Load Plugins */
+// import "./plugins/daterangepicker/vanilla-datetimerange-picker-dark.css";
+// import "./plugins/daterangepicker/vanilla-datetimerange-picker";
 
 /* Internal Styles */
 import "@/assets/layout/style.scss";
@@ -27,14 +25,15 @@ import { store } from "./stores";
 
 const app = createApp(App);
 moment.locale("id");
+
 app.config.globalProperties.moment = moment;
 app.config.globalProperties.axios = axios;
 
-// app.use(BootstrapVue3);
 app.use(VTooltip);
 app.use(VGrid);
-app.use(router);
 
 app.use(store);
+
+app.use(router);
 
 app.mount("#app");

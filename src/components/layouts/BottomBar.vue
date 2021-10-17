@@ -3,8 +3,11 @@
     <div id="bottombar">
       <div class="bottom-left">
         <span class="item text-center" v-tooltip="ip">
-          <i class="mdi mdi-circle offline"></i>
-          {{ latency }} ms
+          <i
+            class="mdi mdi-circle"
+            v-bind:class="{ offline: isOnline == false, online: isOnline }"
+          ></i>
+          {{ latency }}
         </span>
 
         <span
@@ -29,7 +32,7 @@
   </div>
 </template>
 <script>
-import axios from "@/plugins/network";
+import axios from "@/plugins/network.js";
 import { useStore } from "vuex";
 import { computed } from "vue";
 
@@ -45,7 +48,7 @@ export default {
   data() {
     return {
       date: this.moment().format("DD MMM YYYY HH:mm:ss"),
-      isOnline: null,
+      isOnline: false,
       latency: null,
       ip: null,
     };
@@ -54,13 +57,15 @@ export default {
     async getIP() {
       let start = this.moment().valueOf();
       try {
-        let response = await axios.get("http://ip-api.com/json");
+        let response = await axios.get("/status");
 
-        this.ip = response.data.query;
-        this.latency = this.moment().valueOf() - start;
+        this.ip = response.data.data.ip;
+        this.latency = `${this.moment().valueOf() - start} ms`;
+        this.isOnline = true;
       } catch (error) {
+        console.log(error);
         this.isOnline = false;
-        this.latency = "-";
+        this.latency = "offline";
       }
     },
   },
@@ -70,6 +75,7 @@ export default {
     }, 1000);
 
     this.getIP();
+
     setInterval(() => {
       this.getIP();
     }, 10000);

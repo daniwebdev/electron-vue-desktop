@@ -6,8 +6,8 @@
 
     <BottomBar />
 
-    <div id="content">
-      <router-view> </router-view>
+    <div id="content" style="font-family: 'Poppins'">
+      <router-view></router-view>
     </div>
   </div>
 </template>

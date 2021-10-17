@@ -1,12 +1,15 @@
 <template>
-  <top-panel title="Employee" :actions="btnactions" />
+  <top-panel
+    title="Employee"
+    tooltip="Create new employee"
+    :actions="btnactions"
+  />
 
   <v-grid
     theme="darkMaterial"
     :source="rows"
     :columns="columns"
     readonly="true"
-    resize="false"
   ></v-grid>
 
   <Modal size="lg" @close="formIsOpen == false" v-if="formIsOpen == true">
@@ -62,27 +65,33 @@ export default {
       btnactions: [
         {
           icon: "mdi mdi-plus",
-          title: "Add",
-          action: () => {},
+          title: "Crate new employee",
+          action: () => {
+            this.$router.push("/employee/form");
+          },
         },
       ],
       columns: [
         {
           name: "#",
-          prop: "_no",
+          prop: "id",
           columnType: "number",
-          size: 60,
+          // size: 60,
           readonly: true,
         },
         {
-          name: "Username",
-          prop: "username",
-          columnType: "string",
-          size: 120,
+          name: "Nama",
+          prop: "fullname",
+          size: 200,
         },
         {
-          prop: "name",
-          name: "Nama",
+          name: "Departement",
+          prop: "departement",
+          size: 200,
+        },
+        {
+          name: "Jabatan",
+          prop: "designation",
           size: 200,
         },
         {
@@ -96,30 +105,24 @@ export default {
   methods: {
     getData() {
       this.store.commit("startLoading");
-      this.axios
-        .get("https://jsonplaceholder.typicode.com/users")
-        .then((res) => {
-          let data = res.data.map((x) => {
-            return {
-              _no: x.id,
-              username: "2022-08-24",
-              name: x.name,
-              email: x.email,
-            };
-          });
-
-          this.rows = data;
-          this.store.commit("startLoading");
+      this.axios.get("employee").then((res) => {
+        let data = res.data.data.map((x) => {
+          return x;
         });
+
+        this.rows = data;
+        this.store.commit("startLoading");
+      });
     },
   },
   mounted() {
+    ipcRenderer.send("setTitle", "Employee");
     this.getData();
   },
   components: {
-    VGrid,
     TopPanel,
     Modal,
+    VGrid,
   },
 };
 </script>
