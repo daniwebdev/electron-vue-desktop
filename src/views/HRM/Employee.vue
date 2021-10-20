@@ -4,52 +4,53 @@
     tooltip="Create new employee"
     :actions="btnactions"
   />
+  <div class="employee-list row m-0 d-flex">
+    <div
+      class="employee-item col-md-3 p-2 d-flex"
+      v-for="(emp, index) in rows"
+      :key="index"
+    >
+      <div class="card" style="width: 100%">
+        <div class="card-body text-center">
+          <div
+            class="m-auto rounded-circle"
+            :style="
+              'width: 140px; height: 140px; background: url(' +
+              emp.photo +
+              ') no-repeat; background-size: cover'
+            "
+          ></div>
+          <h3>{{ emp.fullname }}</h3>
+          <span class="subtitle">{{ emp.email.toLowerCase() }}</span>
 
-  <v-grid
-    theme="darkMaterial"
-    :source="rows"
-    :columns="columns"
-    readonly="true"
-  ></v-grid>
-
-  <Modal size="lg" @close="formIsOpen == false" v-if="formIsOpen == true">
-    <template v-slot:header>
-      <h3>Exit From App</h3>
-    </template>
-    <template v-slot:body>
-      <div class="row" style="width: 100%">
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="">Nama Lengkap</label>
-            <input type="text" class="form-control" />
-          </div>
+          <h5>{{ emp.designation }}</h5>
+          <span class="subtitle">{{ emp.departement }}</span>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="">Nama Lengkap</label>
-            <input type="text" class="form-control" />
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <label for="">Nama Lengkap</label>
-            <input type="text" class="form-control" />
-          </div>
+        <div class="card-footer d-flex p-0">
+          <button
+            class="social-button d-block"
+            style="width: 40%"
+            @click="openLinkExternal('mailto:' + emp.email)"
+          >
+            <i class="mdi mdi-email"></i>
+          </button>
+          <button class="social-button d-block" style="width: 40%">
+            <i class="mdi mdi-phone"></i>
+          </button>
+          <button
+            class="social-button d-block"
+            style="width: 20%"
+            @click="goDetail(emp.employeeId)"
+          >
+            <i class="mdi mdi-dots-horizontal"></i>
+          </button>
         </div>
       </div>
-    </template>
-    <template v-slot:footer>
-      <div class="act-group">
-        <button class="btn cancel" @click="cancel()">Cancel</button>
-        <button class="btn confirm" @click="confirm()">Confirm</button>
-      </div>
-    </template>
-  </Modal>
+    </div>
+  </div>
 </template>
 <script>
-import VGrid from "@revolist/vue3-datagrid";
 import TopPanel from "@/components/TopPanel.vue";
-import Modal from "@/components/Modal.vue";
 import { useStore } from "vuex";
 
 export default {
@@ -70,33 +71,12 @@ export default {
             this.$router.push("/employee/form");
           },
         },
-      ],
-      columns: [
         {
-          name: "#",
-          prop: "id",
-          columnType: "number",
-          // size: 60,
-          readonly: true,
-        },
-        {
-          name: "Nama",
-          prop: "fullname",
-          size: 200,
-        },
-        {
-          name: "Departement",
-          prop: "departement",
-          size: 200,
-        },
-        {
-          name: "Jabatan",
-          prop: "designation",
-          size: 200,
-        },
-        {
-          prop: "email",
-          name: "Email",
+          icon: "mdi mdi-import",
+          title: "Import",
+          action: () => {
+            this.$router.push("/employee/form");
+          },
         },
       ],
       rows: [],
@@ -106,23 +86,32 @@ export default {
     getData() {
       this.store.commit("startLoading");
       this.axios.get("employee").then((res) => {
-        let data = res.data.data.map((x) => {
-          return x;
-        });
+        let data = res.data.data;
 
         this.rows = data;
         this.store.commit("startLoading");
       });
     },
+    openLinkExternal(link) {
+      ipcRenderer.send("onLinkExtenal", link);
+    },
+    goDetail(_id) {
+      this.$router.push("/employee/" + _id + "?navigation=true");
+    },
   },
   mounted() {
     ipcRenderer.send("setTitle", "Employee");
     this.getData();
+
+    // document.ondblclick = (e) => {
+    //   console.log(e.target.parentNode.classList.contains("rgRow"));
+    //   if (e.target.parentNode.classList.contains("rgRow")) {
+    //     this.$router.push("/userinfo?navigation=true");
+    //   }
+    // };
   },
   components: {
     TopPanel,
-    Modal,
-    VGrid,
   },
 };
 </script>
@@ -130,6 +119,32 @@ export default {
 <style lang="scss">
 revo-grid {
   height: calc(100vh - 50px - var(--top-hight) - var(--bottom-hight));
+}
+
+.employee-item {
+  h3 {
+    font-size: 16px;
+    margin: 0px;
+    margin-top: 20px;
+  }
+  .subtitle {
+    font-size: 12px;
+    color: #999;
+  }
+  h5 {
+    margin: 0px;
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  .social-button {
+    background: var(--primary-color);
+    border: 0px;
+    color: white;
+    padding: 5px;
+    &:hover {
+      background: var(--background-color-primary);
+    }
+  }
 }
 
 top-panel {

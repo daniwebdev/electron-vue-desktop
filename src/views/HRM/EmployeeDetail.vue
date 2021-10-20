@@ -103,7 +103,7 @@
                 :class="{ active: navActive == 'personal' }"
                 @click="onClickRoute('personal')"
               >
-                <router-link to="/userinfo/detail"
+                <router-link :to="'/employee/' + employeeID + '/detail'"
                   ><span> Personal Details </span>
                 </router-link>
               </li>
@@ -111,7 +111,7 @@
                 :class="{ active: navActive == 'activity' }"
                 @click="onClickRoute('activity')"
               >
-                <router-link to="/userinfo/activity-log">
+                <router-link :to="'/employee/' + employeeID + '/activity'">
                   <span>Activity Log</span>
                 </router-link>
               </li>
@@ -119,7 +119,7 @@
                 :class="{ active: navActive == 'attendance' }"
                 @click="onClickRoute('attendance')"
               >
-                <router-link to="/userinfo/attendance">
+                <router-link :to="'/employee/' + employeeID + '/attendance'">
                   <span> Attendance </span>
                 </router-link>
               </li>
@@ -127,8 +127,16 @@
                 :class="{ active: navActive == 'leave' }"
                 @click="onClickRoute('leave')"
               >
-                <router-link to="/userinfo/leave">
+                <router-link :to="'/employee/' + employeeID + '/leave'">
                   <span> Leave </span>
+                </router-link>
+              </li>
+              <li
+                :class="{ active: navActive == 'payslip' }"
+                @click="onClickRoute('payslip')"
+              >
+                <router-link :to="'/employee/' + employeeID + '/leave'">
+                  <span> Payslip </span>
                 </router-link>
               </li>
             </ul>
@@ -145,10 +153,11 @@
 import NavigationPanel from "@/components/NavigationPanel.vue";
 
 export default {
-  name: "UserInfo",
+  name: "EmployeeDetail",
   components: { NavigationPanel },
   data() {
     return {
+      employeeID: 0,
       withNavigation: false,
       navActive: "personal",
       btnactions: [],
@@ -176,6 +185,9 @@ export default {
   },
   mounted() {
     this.getEmployee();
+
+    this.employeeID = this.$route.params.id;
+    console.log(this.$route.params);
 
     this.withNavigation =
       this.$route.query.navigation != undefined

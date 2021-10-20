@@ -4,9 +4,9 @@ import path from "path";
 import { app, protocol, BrowserWindow, ipcMain, net, dialog } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
-const isDevelopment = process.env.NODE_ENV !== "production";
 import fs from "fs";
 
+const isDevelopment = process.env.NODE_ENV !== "production";
 // Scheme must be registered before the app is ready
 protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
@@ -121,22 +121,25 @@ ipcMain.on("setTitle", (event, title) => {
   event.reply("titleChanged", title);
 });
 
-ipcMain.on("openDialog", (event, title) => {
+ipcMain.on("openDialog", (event, extentions = ["png", "jpg"]) => {
   dialog
     .showOpenDialog(mainWindow, {
       buttonLabel: "Upload",
       defaultPath: app.getPath("home"),
-      filters: [
-        { name: "Images", extensions: ["jpg", "png", "gif", "jpeg"] },
-        { name: "All Files", extensions: ["*"] },
-      ],
+      filters: [{ name: "Images", extensions: extentions }],
       properties: ["openFile"],
     })
-    .then( async (file) => {
+    .then(async (file) => {
       if (file.filePaths) {
         let file1 = file.filePaths[0];
-        event.reply("openDialog-reply", fs.readFileSync(file1, "buffer"));
-        // event.reply("openDialog-reply", resp.blob());
+        let ext = path.extname(file1).replace(/\./g, "");
+        let dataURL =
+          "data:image/" + ext + ";base64," + fs.readFileSync(file1, "base64");
+        event.reply("openDialog-reply", dataURL);
       }
     });
+});
+
+ipcMain.on("onLinkExtenal", (event, url) => {
+  require("electron").shell.openExternal(url);
 });

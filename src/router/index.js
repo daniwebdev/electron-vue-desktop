@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import UserInfo from "../views/Account/UserInfo.vue";
 import UserInfoDetail from "../views/Account/PersonalDetail.vue";
+import EmployeeDetail from "../views/HRM/EmployeeDetail.vue";
 
 const routes = [
   {
@@ -41,15 +42,39 @@ const routes = [
     component: () => import("../views/Home.vue"),
   },
   {
+    path: "/employee/:id",
+    name: "EmployeeDetail",
+    component: () => import("../views/HRM/EmployeeDetail.vue"),
+    children: [
+      {
+        path: "",
+        component: () => import("../views/HRM/components/PersonalDetail.vue"),
+      },
+      {
+        path: "detail",
+        name: "EmployeePersonalDetail",
+        component: () => import("../views/HRM/components/PersonalDetail.vue"),
+      },
+      {
+        path: "activity",
+        component: () => import("../views/HRM/components/ActivityLog.vue"),
+      },
+      {
+        path: "attendance",
+        component: () => import("../views/HRM/components/Attendance.vue"),
+      },
+    ],
+  },
+  {
     path: "/employee",
     name: "Employee",
     component: () => import("../views/HRM/Employee.vue"),
   },
-  {
-    path: "/employee/form",
-    name: "EmployeeForm",
-    component: () => import("../views/HRM/EmployeeForm.vue"),
-  },
+  // {
+  //   path: "/employee/form",
+  //   name: "EmployeeForm",
+  //   component: () => import("../views/HRM/EmployeeForm.vue"),
+  // },
 ];
 
 const router = createRouter({

@@ -31,6 +31,7 @@
       </button>
     </div>
   </div>
+  <div style="height: 50px"></div>
 </template>
 <script>
 export default {
@@ -56,21 +57,22 @@ export default {
   background: var(--background-color-primary);
   box-shadow: 0 -1px 0 0 #44f inset;
   height: 50px;
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
   .title {
     margin: 0px;
     font-size: 20px;
     padding-left: 10px;
   }
-  .actions {
-    .btn-action {
-      background: #44f;
-      color: white;
-      border: 1px solid #44f;
-      height: 50px;
-      width: 50px;
-      font-size: 20px;
-      cursor: pointer;
-    }
+  .btn-action {
+    background: #44f;
+    color: white;
+    border: 1px solid #44f;
+    height: 50px;
+    width: 50px;
+    font-size: 20px;
+    cursor: pointer;
   }
 }
 </style>
