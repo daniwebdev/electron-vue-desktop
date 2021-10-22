@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import UserInfo from "../views/Account/UserInfo.vue";
 import UserInfoDetail from "../views/Account/PersonalDetail.vue";
-import EmployeeDetail from "../views/HRM/EmployeeDetail.vue";
 
 const routes = [
   {

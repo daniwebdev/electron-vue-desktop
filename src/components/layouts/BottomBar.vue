@@ -30,20 +30,37 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Call In Progress -->
+  <call-in-progress></call-in-progress>
+
+  <!-- Calling -->
+  <incoming-call :isCalling="true"></incoming-call>
 </template>
 <script>
 import axios from "@/plugins/network.js";
 import { useStore } from "vuex";
 import { computed } from "vue";
+import IncomingCall from "@/components/calling/IncomingCall.vue";
+import CallInProgres from "@/components/calling/CallInProgres.vue";
+
+const components = {
+  "incoming-call": IncomingCall,
+  "call-in-progress": CallInProgres,
+};
 
 export default {
+  components: { IncomingCall },
   name: "BottomBar",
+  components,
   setup() {
     const store = useStore();
 
     const isLoading = computed(() => store.state.loadingStatus);
+    const isCalling = computed(() => store.state.calling.status);
 
-    return { isLoading };
+    return { isLoading, isCalling };
   },
   data() {
     return {
@@ -51,6 +68,7 @@ export default {
       isOnline: false,
       latency: null,
       ip: null,
+      callIsInProgress: false,
     };
   },
   methods: {
@@ -79,6 +97,10 @@ export default {
     setInterval(() => {
       this.getIP();
     }, 10000);
+
+    setTimeout(() => {
+      // this.isCalling = true;
+    }, 5000);
   },
 };
 </script>
@@ -124,23 +146,6 @@ export default {
     cursor: pointer;
   }
 }
-
-/* SPINER */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.spin {
-  animation-name: spin;
-  animation-duration: 4000ms;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-}
 .btn-spaction-bottom {
   text-align: center;
   // padding-top: 8px !important;
@@ -152,4 +157,5 @@ export default {
     cursor: pointer;
   }
 }
+
 </style>

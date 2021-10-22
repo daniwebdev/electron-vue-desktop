@@ -23,11 +23,16 @@ import "moment/dist/locale/id";
 import axios from "@/plugins/network.js";
 import { store } from "./stores";
 
-const app = createApp(App);
+import { Howl, Howler } from "howler";
+
 moment.locale("id");
+
+const app = createApp(App);
 
 app.config.globalProperties.moment = moment;
 app.config.globalProperties.axios = axios;
+app.config.globalProperties.Howl = Howl;
+app.config.globalProperties.Howler = Howler;
 
 app.use(VTooltip);
 app.use(VGrid);

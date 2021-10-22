@@ -42,7 +42,7 @@
             style="width: 20%"
             @click="goDetail(emp.employeeId)"
           >
-            <i class="mdi mdi-dots-horizontal"></i>
+            <i class="mdi mdi-dots-horizontal" v-tooltip="'Detail'"></i>
           </button>
         </div>
       </div>
