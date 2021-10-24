@@ -59,6 +59,14 @@ const routes = [
         component: () => import("../views/HRM/components/ActivityLog.vue"),
       },
       {
+        path: "leave",
+        component: () => import("../views/HRM/components/Leave.vue"),
+      },
+      {
+        path: "payslip",
+        component: () => import("../views/HRM/components/Payslip.vue"),
+      },
+      {
         path: "attendance",
         component: () => import("../views/HRM/components/Attendance.vue"),
       },

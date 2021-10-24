@@ -38,21 +38,46 @@
             "
           ></div>
           <h3 style="font-size: 15px" class="mt-3">Muhamad Yusup Hamdani</h3>
-          <h4>00:01</h4>
+          <h4>{{ timerCall }}</h4>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { computed } from "@vue/reactivity";
+import { useStore } from "vuex";
+
 export default {
   name: "CallInProgres",
+  setup() {
+    const store = useStore();
+
+    const callIsInProgress = computed(() => store.state.calling.isInProgress);
+
+    return { callIsInProgress, store };
+  },
   data() {
     return {
-      callIsInProgress: false,
+      timerCall: "00:00:00",
     };
   },
-  methods: {},
+  methods: {
+    startTimer(startUnix) {
+      setInterval(() => {
+        const now = new Date().getTime() - startUnix;
+        const hours = Math.floor(now / (1000 * 60 * 60));
+        const minutes = Math.floor((now % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((now % (1000 * 60)) / 1000);
+        this.timerCall = `${hours.toString().padStart(2, "0")}:${minutes
+          .toString()
+          .padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+      }, 1000);
+    },
+  },
+  mounted() {
+    this.startTimer(new Date().getTime());
+  },
 };
 </script>
 <style lang="scss">

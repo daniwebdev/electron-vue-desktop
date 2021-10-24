@@ -14,7 +14,7 @@
           class="item text-center"
           v-tooltip="'last login: 20 Okt 2021 12:23:21'"
         >
-          <i class="mdi mdi-account"></i> Muhamad Yusup Hamdani
+          <i class="mdi mdi-account"></i> {{ user.name }}
         </span>
       </div>
       <div class="bottom-right">
@@ -31,12 +31,11 @@
     </div>
   </div>
 
-
   <!-- Call In Progress -->
   <call-in-progress></call-in-progress>
 
   <!-- Calling -->
-  <incoming-call :isCalling="true"></incoming-call>
+  <incoming-call :isCalling="false"></incoming-call>
 </template>
 <script>
 import axios from "@/plugins/network.js";
@@ -59,8 +58,9 @@ export default {
 
     const isLoading = computed(() => store.state.loadingStatus);
     const isCalling = computed(() => store.state.calling.status);
+    const user = computed(() => store.state.user.data);
 
-    return { isLoading, isCalling };
+    return { isLoading, isCalling, store, user };
   },
   data() {
     return {
@@ -157,5 +157,4 @@ export default {
     cursor: pointer;
   }
 }
-
 </style>

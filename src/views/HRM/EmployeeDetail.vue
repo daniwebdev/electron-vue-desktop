@@ -135,7 +135,7 @@
                 :class="{ active: navActive == 'payslip' }"
                 @click="onClickRoute('payslip')"
               >
-                <router-link :to="'/employee/' + employeeID + '/leave'">
+                <router-link :to="'/employee/' + employeeID + '/payslip'">
                   <span> Payslip </span>
                 </router-link>
               </li>

@@ -3,8 +3,12 @@
     <div class="card-header d-flex justify-content-between">
       <div>Attendance</div>
       <div>
-        <datepicker class="d-inline" v-model="date" />
-        <datepicker v-model="date" />
+        <select name="" id="">
+          <option value="">2021</option>
+        </select>
+        <select name="" id="">
+          <option value="">Januari</option>
+        </select>
       </div>
     </div>
     <div class="card-body">
@@ -97,9 +101,7 @@ export default {
   async mounted() {
     await this.getAttendance();
   },
-  components: {
-    Datepicker,
-  },
+  components: {},
 };
 </script>
 <style lang="scss">
