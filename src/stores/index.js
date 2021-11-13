@@ -17,8 +17,14 @@ export const store = createStore({
   },
   mutations: {
     startLoading(state) {
-      console.log("startLoading");
-      state.loadingStatus = !state.loadingStatus;
+      if (state.loadingStatus === false) {
+        state.loadingStatus = true;
+      }
+    },
+    stopLoading(state) {
+      if (state.loadingStatus === true) {
+        state.loadingStatus = false;
+      }
     },
   },
 });

@@ -139,6 +139,14 @@
                   <span> Payslip </span>
                 </router-link>
               </li>
+              <li
+                :class="{ active: navActive == 'tasks' }"
+                @click="onClickRoute('tasks')"
+              >
+                <router-link :to="'/employee/' + employeeID + '/tasks'">
+                  <span> Tasks </span>
+                </router-link>
+              </li>
             </ul>
           </div>
         </div>

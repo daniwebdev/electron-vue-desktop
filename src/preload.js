@@ -1,4 +1,10 @@
-import { contextBridge, ipcRenderer, app } from "electron";
+import {
+  contextBridge,
+  BrowserWindow,
+  ipcRenderer,
+  app,
+  shell,
+} from "electron";
 import fs from "fs";
 
 // Expose ipcRenderer to the client
@@ -25,6 +31,15 @@ contextBridge.exposeInMainWorld("ipcRenderer", {
     }
   },
 });
+
+/* Expose OpenExtenalLink */
+contextBridge.exposeInMainWorld("utillity", {
+  openExtenalLink: (url) => {
+    shell.openExternal(url);
+  },
+});
+
+/* Expose FS Lib */
 contextBridge.exposeInMainWorld("fs", {
   readFile: (path, options) => {
     return new Promise((resolve, reject) => {

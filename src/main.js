@@ -20,9 +20,8 @@ import "@/assets/tooltip.scss";
 
 import moment from "moment";
 import "moment/dist/locale/id";
-import axios from "@/plugins/network.js";
+import helper from "./plugins/helper.js";
 import { store } from "./stores";
-
 import { Howl, Howler } from "howler";
 
 moment.locale("id");
@@ -30,7 +29,8 @@ moment.locale("id");
 const app = createApp(App);
 
 app.config.globalProperties.moment = moment;
-app.config.globalProperties.axios = axios;
+app.config.globalProperties.axios = helper.axios;
+app.config.globalProperties.loading = helper.loading;
 app.config.globalProperties.Howl = Howl;
 app.config.globalProperties.Howler = Howler;
 

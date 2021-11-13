@@ -27,21 +27,14 @@
           <span class="subtitle">{{ emp.departement }}</span>
         </div>
         <div class="card-footer d-flex p-0">
-          <button
-            class="social-button d-block"
-            style="width: 40%"
-            @click="openLinkExternal('mailto:' + emp.email)"
-          >
+          <button class="social-button d-block" style="width: 40%" @click="openLinkExternal('mailto:' + emp.email)">
             <i class="mdi mdi-email"></i>
           </button>
-          <button class="social-button d-block" style="width: 40%">
+          <button class="social-button d-block position-relative" style="width: 40%">
             <i class="mdi mdi-phone"></i>
+            <i class="mdi mdi-circle text-danger position-absolute" style="font-size: 8px; margin-left: -5px"></i>
           </button>
-          <button
-            class="social-button d-block"
-            style="width: 20%"
-            @click="goDetail(emp.employeeId)"
-          >
+          <button class="social-button d-block" style="width: 20%" @click="goDetail(emp.employeeId)">
             <i class="mdi mdi-dots-horizontal" v-tooltip="'Detail'"></i>
           </button>
         </div>
@@ -66,7 +59,7 @@ export default {
       btnactions: [
         {
           icon: "mdi mdi-plus",
-          title: "Crate new employee",
+          title: "Create new employee",
           action: () => {
             this.$router.push("/employee/form");
           },
@@ -84,16 +77,16 @@ export default {
   },
   methods: {
     getData() {
-      this.store.commit("startLoading");
+      this.loading.start(this.store);
       this.axios.get("employee").then((res) => {
         let data = res.data.data;
 
         this.rows = data;
-        this.store.commit("startLoading");
+        this.loading.stop(this.store);
       });
     },
     openLinkExternal(link) {
-      ipcRenderer.send("onLinkExtenal", link);
+      utillity.openExtenalLink(link);
     },
     goDetail(_id) {
       this.$router.push("/employee/" + _id + "?navigation=true");
@@ -102,13 +95,6 @@ export default {
   mounted() {
     ipcRenderer.send("setTitle", "Employee");
     this.getData();
-
-    // document.ondblclick = (e) => {
-    //   console.log(e.target.parentNode.classList.contains("rgRow"));
-    //   if (e.target.parentNode.classList.contains("rgRow")) {
-    //     this.$router.push("/userinfo?navigation=true");
-    //   }
-    // };
   },
   components: {
     TopPanel,
@@ -167,36 +153,4 @@ top-panel {
     }
   }
 }
-// revo-grid[theme="compact"] {
-//   .header-wrapper {
-//     background-color: var(--background-color-secondary);
-//   }
-
-//   .rgRow {
-//     background: var(--row-background);
-//     // box-shadow: 0px 0px 0px 1px #151927;
-//     border: none;
-//   }
-
-//   .rgCell {
-//     color: #888;
-//   }
-//   revogr-header {
-//     .rgHeaderCell.focused-cell {
-//       background-color: #0e0e22;
-//     }
-//   }
-
-//   revogr-data {
-//     .rgRow {
-//       box-shadow: 0 -1px 0 0 var(--row-shadow) inset;
-//     }
-//     .rgRow.focused-rgRow {
-//       background-color: #0e0e22;
-//     }
-//     .rgCell {
-//       color: #717585;
-//     }
-//   }
-// }
 </style>

@@ -306,7 +306,7 @@ export default {
 
         let formData = new FormData();
         formData.append("file", dataURLToBlob(base64), "file.png");
-        _http.post("/api/upload", formData).then((res) => {
+        _http.post("employee/upload", formData).then((res) => {
           console.log(res);
         });
       });

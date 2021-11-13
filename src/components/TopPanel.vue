@@ -58,7 +58,7 @@ export default {
   box-shadow: 0 -1px 0 0 #44f inset;
   height: 50px;
   position: fixed;
-  width: 100%;
+  width: calc(100% - var(--side-hight));
   z-index: 10000;
   .title {
     margin: 0px;

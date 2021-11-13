@@ -5,6 +5,7 @@ import { app, protocol, BrowserWindow, ipcMain, net, dialog } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS3_DEVTOOLS } from "electron-devtools-installer";
 import fs from "fs";
+import MainWindow from "./background_window";
 
 const isDevelopment = process.env.NODE_ENV !== "production";
 // Scheme must be registered before the app is ready
@@ -12,7 +13,7 @@ protocol.registerSchemesAsPrivileged([
   { scheme: "app", privileges: { secure: true, standard: true } },
 ]);
 
-var mainWindow;
+var _mainWindow = undefined;
 
 async function createWindow() {
   // Create the browser window.
@@ -39,11 +40,6 @@ async function createWindow() {
     // Load the index.html when not in development
     // mainWindow.loadURL("app://./index.html");
     mainWindow.loadURL("app://./index.html#");
-    // formatUrl({
-    //   pathname: path.join(__dirname, "index.html"),
-    //   protocol: "file",
-    //   slashes: true,
-    // })
   }
 
   mainWindow.maximize();
@@ -76,7 +72,8 @@ app.on("ready", async () => {
       console.error("Vue Devtools failed to install:", e.toString());
     }
   }
-  createWindow();
+
+  _mainWindow = MainWindow();
 });
 
 // Exit cleanly on request from parent process in development mode.
@@ -99,14 +96,14 @@ ipcMain.on("close-window", (event, args) => {
 });
 
 ipcMain.on("minimize-window", (event, args) => {
-  mainWindow.minimize();
+  _mainWindow.minimize();
 });
 
 ipcMain.on("maximize-window", (event, args) => {
-  if (mainWindow.isMaximized()) {
-    mainWindow.unmaximize();
+  if (_mainWindow.isMaximized()) {
+    _mainWindow.unmaximize();
   } else {
-    mainWindow.maximize();
+    _mainWindow.maximize();
   }
 });
 
@@ -117,13 +114,14 @@ ipcMain.on("net-check", (event, args) => {
 
 ipcMain.on("setTitle", (event, title) => {
   title = "CONET.ID - " + title;
-  mainWindow.setTitle(title);
+  _mainWindow.setTitle(title);
   event.reply("titleChanged", title);
 });
 
+/* Open File Dialog MainWindow */
 ipcMain.on("openDialog", (event, extentions = ["png", "jpg"]) => {
   dialog
-    .showOpenDialog(mainWindow, {
+    .showOpenDialog(_mainWindow, {
       buttonLabel: "Upload",
       defaultPath: app.getPath("home"),
       filters: [{ name: "Images", extensions: extentions }],
@@ -140,6 +138,7 @@ ipcMain.on("openDialog", (event, extentions = ["png", "jpg"]) => {
     });
 });
 
+/* Open External Link From FronEnd */
 ipcMain.on("onLinkExtenal", (event, url) => {
   require("electron").shell.openExternal(url);
 });

@@ -38,7 +38,7 @@
   <incoming-call :isCalling="false"></incoming-call>
 </template>
 <script>
-import axios from "@/plugins/network.js";
+// import axios from "@/plugins/network.js";
 import { useStore } from "vuex";
 import { computed } from "vue";
 import IncomingCall from "@/components/calling/IncomingCall.vue";
@@ -75,7 +75,7 @@ export default {
     async getIP() {
       let start = this.moment().valueOf();
       try {
-        let response = await axios.get("/status");
+        let response = await this.axios.get("/status");
 
         this.ip = response.data.data.ip;
         this.latency = `${this.moment().valueOf() - start} ms`;

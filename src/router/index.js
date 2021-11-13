@@ -70,6 +70,10 @@ const routes = [
         path: "attendance",
         component: () => import("../views/HRM/components/Attendance.vue"),
       },
+      {
+        path: "tasks",
+        component: () => import("../views/HRM/components/Tasks.vue"),
+      },
     ],
   },
   {
@@ -77,11 +81,11 @@ const routes = [
     name: "Employee",
     component: () => import("../views/HRM/Employee.vue"),
   },
-  // {
-  //   path: "/employee/form",
-  //   name: "EmployeeForm",
-  //   component: () => import("../views/HRM/EmployeeForm.vue"),
-  // },
+  {
+    path: "/employee/form",
+    name: "EmployeeForm",
+    component: () => import("../views/HRM/EmployeeForm.vue"),
+  },
 ];
 
 const router = createRouter({
